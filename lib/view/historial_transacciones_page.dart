@@ -165,11 +165,11 @@ class PaginaHistorialTransacciones extends StatelessWidget {
                       children: [
                         Text(
                           'Total Créditos: \$${totalCredito.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                         ),
                         Text(
                           'Total Débitos: \$${totalDebito.toStringAsFixed(2)}',
-                          style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                          style: TextStyle(fontSize: 10, fontWeight: FontWeight.bold),
                         ),
                       ],
                     ),
