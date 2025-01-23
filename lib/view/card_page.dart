@@ -185,27 +185,43 @@ class _PaginaTarjetasState extends State<PaginaTarjetas> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Tarjetas'),
+        backgroundColor: Color(0xFF4A148C),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_alt),
+            onPressed: () {
+              // Acción para filtrar transacciones
+            },
+          ),
+        ],
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           children: [
-            // Texto adicional con diseño
-            Container(
+            // Mostrar contenido adicional cuando no hay tarjetas
+            _controlador.tarjetasBanca.isEmpty
+                ? Container(
               padding: const EdgeInsets.all(12),
               decoration: BoxDecoration(
                 color: Colors.deepPurpleAccent,
                 borderRadius: BorderRadius.circular(10),
               ),
               child: const Text(
-                'Bienvenido a la gestión de tarjetas. Aquí puedes agregar y visualizar tus tarjetas de crédito o débito de manera rápida y segura.',
+                '¡No tienes tarjetas agregadas aún!\nA continuación, puedes agregar una nueva tarjeta para gestionar tu saldo, límite de crédito y realizar transacciones.',
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16,
                   fontWeight: FontWeight.w600,
+                  height: 1.5, // Mejora la legibilidad
                 ),
                 textAlign: TextAlign.center,
               ),
-            ),
+            )
+                : const SizedBox.shrink(), // Si hay tarjetas, no mostrar este texto
+
             const SizedBox(height: 20),
 
             Expanded(

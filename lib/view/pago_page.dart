@@ -88,11 +88,8 @@ class _PaginaPagoState extends State<PaginaPago> {
                   prefixIcon: Icon(Icons.attach_money),
                 ),
                 validator: (value) {
-                  if (value == null || value.isEmpty) {
-                    return 'Por favor ingrese el monto';
-                  }
-                  final monto = double.tryParse(value);
-                  if (monto == null || monto <= 0) {
+                  final monto = double.tryParse(value!);
+                  if (monto! <= 0) {
                     return 'Ingrese un monto válido mayor a 0';
                   }
                   return null;
@@ -108,14 +105,13 @@ class _PaginaPagoState extends State<PaginaPago> {
                   prefixIcon: Icon(Icons.credit_card),
                 ),
                 validator: (value) {
-                  if (value!.isEmpty) {
-                    return 'Por favor ingrese el número de tarjeta';
-                  }
-                  if (value.length != 16) {
+                  // Validación solo de la longitud, sin comprobar si está vacío
+                  if (value?.length != 16) {
                     return 'El número de tarjeta debe tener 16 dígitos numéricos';
                   }
                   return null;
                 },
+
               ),
               const SizedBox(height: 20),
               ElevatedButton.icon(
@@ -164,7 +160,20 @@ class _PaginaPagoState extends State<PaginaPago> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Pagos'),
+        backgroundColor: Color(0xFF4A148C),
+        actions: [
+          IconButton(
+            icon: Icon(Icons.filter_alt),
+            onPressed: () {
+              // Acción para filtrar transacciones
+            },
+          ),
+        ],
+      ),
       body: Padding(
+
         padding: const EdgeInsets.all(16.0),
         child: SingleChildScrollView(
           child: Column(
